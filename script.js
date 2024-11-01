@@ -3,7 +3,7 @@ function goHome() {
 }
 
 function openNewformChallengeURL() {
-    window.location.href = "https://www.newform.community/challenge"; //Open challenge url func
+    window.open("https://www.newform.community/challenge",'_blank'); //Open challenge url func
 }
 
 document.addEventListener("DOMContentLoaded", function () {
