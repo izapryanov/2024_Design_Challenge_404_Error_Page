@@ -1,5 +1,9 @@
 function goHome() {
-    window.location.href = "https://github.com/izapryanov/"; // Replace with your home page URL
+    window.location.href = "https://github.com/izapryanov/"; //Open my home page on github
+}
+
+function openNewformChallengeURL() {
+    window.location.href = "https://www.newform.community/challenge"; //Open challenge url func
 }
 
 document.addEventListener("DOMContentLoaded", function () {
