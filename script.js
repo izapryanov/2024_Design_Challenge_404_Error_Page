@@ -1,5 +1,5 @@
 function goHome() {
-    window.location.href = "index.html"; // Replace with your home page URL
+    window.location.href = "https://github.com/izapryanov/"; // Replace with your home page URL
 }
 
 document.addEventListener("DOMContentLoaded", function () {
