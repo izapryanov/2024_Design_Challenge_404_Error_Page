@@ -1,0 +1,49 @@
+/* Basic page styling */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom right, #e0eafc, #cfdef3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Header styling */
+header {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Home button styling */
+#home-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+#home-button:hover {
+    background-color: #0056b3;
+}
+
+/* Animation container */
+#animation-container {
+    position: relative;
+    width: 100%;
+    height: 50%;
+    overflow: hidden;
+}
+
+/* Car animation styling */
+#car-image {
+    position: absolute;
+    width: 150px;
+    bottom: 20px;
+    left: -200px; /* Start position off-screen */
+}
