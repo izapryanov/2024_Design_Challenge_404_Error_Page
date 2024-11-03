@@ -38,7 +38,7 @@ main {
 }
 
 #car-image {
-    width: 700px; /* Adjust width to your desired size */
+    width: 500px; /* Adjust width to your desired size */
     max-width: 100%; /* Responsive scaling */
     height: auto;
 }
@@ -63,3 +63,15 @@ main {
     display: flex;
     gap: 10px; /* Space between buttons */
 }
+
+.back-home-link {
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 1em;
+    color: #007bff;
+    text-decoration: none;
+    border: 1px solid #007bff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: color 0.3s, background-color 0.3s;
+  }
