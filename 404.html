@@ -8,15 +8,21 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
+    <!-- <header>
         <h1>This page is not found, it must be an old-timer.</h1>
-    </header>
+    </header> -->
     <main>
-        <button class="styled-button" id="home-button" onclick="goHome()">Home</button> 
-        <button class="styled-button" id="newform-button" onclick="openNewformChallengeURL()">Newform Design Challenge</button>
         <div id="animation-container">
             <img id="car-image" src="car.png" alt="Car animation">
             <audio id="car-sound" src="vrooom.mp3"></audio>
+        </div>
+        <!-- Content container for button and text -->
+        <div id="content-container">
+            <h1 id="message-text">This page is not found, it must be an old-timer.</h1>
+            <div class="button-group">
+                <button class="styled-button" id="home-button" onclick="goHome()">Home</button> 
+                <button class="styled-button" id="newform-button" onclick="openNewformChallengeURL()">Newform Design Challenge</button>
+            </div> 
         </div>
     </main>
     <script src="script.js"></script>

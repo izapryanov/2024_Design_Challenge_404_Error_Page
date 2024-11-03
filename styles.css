@@ -1,20 +1,46 @@
-/* Basic page styling */
-body {
+/* Reset some default styling */
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+body, html {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-family: Arial, sans-serif;
-    background: linear-gradient(to bottom right, #e0eafc, #cfdef3);
+}
+
+    /* Styling for the main container */
+main {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    overflow: hidden;
+    gap: 20px; /* Space between the image and text section */
 }
 
-/* Header styling */
-header {
-    margin-bottom: 20px;
+/* Center the button and text */
+#content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
+    gap: 10px; /* Space between text and button group */
+}
+/* Full viewport size for animation container */
+#animation-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#car-image {
+    width: 700px; /* Adjust width to your desired size */
+    max-width: 100%; /* Responsive scaling */
+    height: auto;
 }
 
 /* Home button styling */
@@ -26,24 +52,14 @@ header {
     border-radius: 5px;
     cursor: pointer;
     font-size: 1rem;
-    transition: background-color 0.3s ease;
+    /* transition: background-color 0.3s ease; */
 }
 .styled-button:hover {
     background-color: #0056b3;
 }
 
-/* Animation container */
-#animation-container {
-    position: relative;
-    width: 100%;
-    height: 50%;
-    overflow: hidden;
-}
-
-/* Car animation styling */
-#car-image {
-    position: absolute;
-    width: 150px;
-    bottom: 20px;
-    left: -200px; /* Start position off-screen */
+/* Button group styling */
+.button-group {
+    display: flex;
+    gap: 10px; /* Space between buttons */
 }
