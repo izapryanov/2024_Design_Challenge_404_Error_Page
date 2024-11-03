@@ -12,7 +12,13 @@ body, html {
     justify-content: center;
     font-family: Arial, sans-serif;
     flex-direction: column;
-     min-height: 100vh;
+    min-height: 100vh;
+    color: #333
+}
+
+/* Apply gradient background to the body */
+body {
+    background: linear-gradient(135deg, #f9f5f0, #f0c9c8);
 }
 
 /* Main container styling*/
@@ -44,7 +50,7 @@ main {
 
 /* Car image styling */
 #car-image {
-    width: 300px; /* Adjust width to your desired size */
+    width: 500px; /* Adjust width to your desired size */
     max-width: 100%; /* Responsive scaling */
     height: auto;
 }
