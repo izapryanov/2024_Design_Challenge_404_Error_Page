@@ -74,3 +74,19 @@ footer {
     padding: 10px;
     color: #333;
 }
+
+/* Car wrapper with trembling effect */
+.car-wrapper {
+    display: inline-block;
+    animation: engine_vibration 0.1s infinite; /* Trembling effect */
+  }
+
+/* Animations */
+/* Animation for trembling effect */
+@keyframes engine_vibration {
+0% { transform: translate(-1px, 1px); }
+25% { transform: translate(1px, -1px); }
+50% { transform: translate(-1px, -1px); }
+75% { transform: translate(1px, 1px); }
+100% { transform: translate(-1px, 1px); }
+}
