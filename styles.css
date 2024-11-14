@@ -13,12 +13,24 @@ body, html {
     font-family: Arial, sans-serif;
     flex-direction: column;
     min-height: 100vh;
-    color: #333
+    color: #333;
 }
+
+.debug-on #content-container,
+.debug-on #animation-containe,
+.debug-on #car-image,
+.debug-on main {
+  border: 2px dashed red;
+}
+
+/* html {
+  border-style:dashed;
+} */
 
 /* Apply gradient background to the body */
 body {
     background: linear-gradient(135deg, #f9f5f0, #f0c9c8);
+   
 }
 
 /* Main container styling*/
@@ -29,7 +41,6 @@ main {
     justify-content: center;
     gap: 20px; /* Space between the image and text section */
     flex: 1;
-
 }
 
 /* Text and back link container styling */
@@ -50,10 +61,35 @@ main {
 
 /* Car image styling */
 #car-image {
-    width: 500px; /* Adjust width to your desired size */
-    max-width: 100%; /* Responsive scaling */
-    height: auto;
+    /* width: 500px; /* Adjust width to your desired size 
+    max-width: 100%; /* Responsive scaling 
+    height: auto; */
+    width:500px; /* Initial size */
+    /* animation: drive 5s cubic-bezier(0.33, 1, 0.68, 1) forwards;  */
+    animation: moveAlongPath 5s ease-in-out forwards, drive 5s ease-in-out forwards;
+    offset-path: path("M 500 0 C -100 0, 500 100, 200 200"); /* Motion path */
+    offset-rotate: 0deg;
 }
+
+/* Motion path for the car */
+@keyframes moveAlongPath {
+    0% {
+      offset-distance: 0%;
+    }
+    100% {
+      offset-distance: 100%;
+    }
+  }
+
+  /* Scale-up animation */
+  /* @keyframes scaleUp {
+    0% {
+      transform: scale(0.5);
+    }
+    100% {
+      transform: scale(1.2);
+    }
+  } */
 
 /* Go to home page lin styling */
 .back-home-link {
@@ -73,20 +109,40 @@ footer {
     text-align: center;
     padding: 10px;
     color: #333;
+    /* border-style:dashed; */
 }
 
-/* Car wrapper with trembling effect */
+/* Car wrapper with engine vibration effect */
 .car-wrapper {
     display: inline-block;
-    animation: engine_vibration 0.1s infinite; /* Trembling effect */
+    animation: engine_vibration 0.1s 50;/*Engine vibration effect */
+    /* border-style:dotted; */
   }
 
 /* Animations */
 /* Animation for trembling effect */
 @keyframes engine_vibration {
-0% { transform: translate(-1px, 1px); }
-25% { transform: translate(1px, -1px); }
-50% { transform: translate(-1px, -1px); }
-75% { transform: translate(1px, 1px); }
-100% { transform: translate(-1px, 1px); }
+    0% { transform: translate(-1px, 1px); }
+    25% { transform: translate(1px, -1px); }
+    50% { transform: translate(-1px, -1px); }
+    75% { transform: translate(1px, 1px); }
+    100% { transform: translate(-1px, 1px); }
 }
+ /* Animation for zooming and following a curve */
+ @keyframes drive {
+    0% {
+      transform:  scale(0.2) rotate(10deg); /* Start position mid-screen translate(100px, -150px) */
+    }
+    40% {
+      transform: scale(0.4) rotate(-5deg); /* Curve midpoint  translate(-100px, 0px) */
+    }
+    60% {
+        transform: scale(0.6) rotate(10deg); /* Curve midpoint translate(100px, 0px) */
+      }
+    80% {
+      transform:  scale(0.8) rotate(-5deg); /* End position translate(-100px, 0px) */
+    }
+    100% {
+        transform: scale(1) rotate(0deg); /* End position translate(0px, 0px)  */
+      }
+  }

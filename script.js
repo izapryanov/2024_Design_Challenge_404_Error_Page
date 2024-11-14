@@ -14,3 +14,33 @@ document.addEventListener("DOMContentLoaded", function () {
         // easing: 'ease-in-out'
     });
 });
+window.onload = () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    debugMode = urlParams.get('debug') === 'true';
+    if (debugMode) {
+      enableDebug();
+    }
+  };
+
+  function toggleDebugMode() {
+    debugMode = !debugMode;
+    if (debugMode) {
+      enableDebug();
+    } else {
+      disableDebug();
+    }
+  }
+  
+  function enableDebug() {
+    console.log("Debug mode ON");
+    document.body.classList.add("debug-on");
+    // Add other JavaScript debugging features here
+    // e.g., activate verbose logging, special styling, etc.
+  }
+  
+  function disableDebug() {
+    console.log("Debug mode OFF");
+    document.body.classList.remove("debug-on");
+    // Disable debugging features here
+  }
+  
