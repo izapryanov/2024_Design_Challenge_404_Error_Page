@@ -17,10 +17,10 @@ body, html {
 }
 
 .debug-on #content-container,
-.debug-on #animation-containe,
+.debug-on #animation-container,
 .debug-on #car-image,
 .debug-on main {
-  border: 2px dashed red;
+  border: 2px dashed yellow;
 }
 
 /* html {
@@ -39,7 +39,9 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 20px; /* Space between the image and text section */
+     /*gap: 20px; Space between the image and text section */
+     margin-bottom: 20px;
+    width: 100%;
     flex: 1;
 }
 
@@ -49,14 +51,23 @@ main {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 10px; /* Space between text and button group */
+    width: 100%;
+    /*gap: 10px;  Space between text and button group */
 }
 
 /* Full viewport size for animation container styling*/
 #animation-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    flex:1;
+    background-image: url('background_paris_watercolor.png');
+    background-repeat: no-repeat;
+    /* background-attachment: fixed; */
+    background-size: 100% 100%;
+    background-position: center bottom;
 }
 
 /* Car image styling */
@@ -64,7 +75,7 @@ main {
     /* width: 500px; /* Adjust width to your desired size 
     max-width: 100%; /* Responsive scaling 
     height: auto; */
-    width:500px; /* Initial size */
+    width:100px; /* Initial size */
     /* animation: drive 5s cubic-bezier(0.33, 1, 0.68, 1) forwards;  */
     animation: moveAlongPath 5s ease-in-out forwards, drive 5s ease-in-out forwards;
     offset-path: path("M 500 0 C -100 0, 500 100, 200 200"); /* Motion path */
@@ -94,7 +105,7 @@ main {
 /* Go to home page lin styling */
 .back-home-link {
     display: inline-block;
-    margin-top: 20px;
+    margin-top: 10px;
     font-size: 1em;
     color: #007bff;
     text-decoration: none;
