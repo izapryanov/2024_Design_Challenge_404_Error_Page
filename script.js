@@ -99,12 +99,22 @@
 
             car.style.left = `${startPosition.left}px`;
             car.style.top = `${startPosition.top}px`;
+            function startAnimation() {
+                // Trigger the animation after a short delay
+                setTimeout(() => {
+                    animateCar(startPosition, endPosition, 5000, 5, 40); // 2000ms = 2 seconds, scale from 5% to 20%
+                }, 500); // Start animation after 0.5 seconds
+            }
+            startAnimation();
 
-            // Trigger the animation after a short delay
-            setTimeout(() => {
-                animateCar(startPosition, endPosition, 2000, 5, 40); // 2000ms = 2 seconds, scale from 5% to 20%
-            }, 500); // Start animation after 0.5 seconds
-
+            // Trigger the animation when the button is clicked
+            document.getElementById('replay-btn').addEventListener('click',  () => {
+                const audio = document.getElementById('background-audio');
+                audio.currentTime = 0;
+                audio.play();
+                startAnimation();
+            });
+            
             // Recalculate positions on window resize
             window.addEventListener('resize', onResize);
         });
@@ -113,3 +123,18 @@
             const img = document.getElementById('car');
             img.src = (isHover ? 'resources/car_watercolor_border_hover.png' : 'resources/car_watercolor_border.png');
         }
+
+        // Get the audio element and the button
+        const audio = document.getElementById('background-audio');
+        const muteUnmuteButton = document.getElementById('mute-unmute-btn');
+
+        document.getElementById('mute-unmute-btn').addEventListener('click',  () => {
+            if (audio.muted) {
+                audio.muted = false; // Unmute the audio
+                muteUnmuteButton.textContent = 'Mute 🔇'; // Change button text
+            } else {
+                audio.muted = true; // Mute the audio
+                muteUnmuteButton.textContent = 'Unmute 🔈'; // Change button text
+            }
+        });
+        

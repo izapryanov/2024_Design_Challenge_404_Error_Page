@@ -28,6 +28,21 @@
     transform: translate(-50%, -50%); /* Center the car exactly */
 }
 
+/* Text style for footer buttons */
+.footer-button {
+    color: #0000EE; /* Unvisited link color */
+    text-decoration: underline; /* Underlined by default */
+    border: none;
+    background: none;
+    cursor: pointer; /* Changes the cursor to a pointer on hover */
+}
+
+/* Style when button is hovered */
+.footer-button:hover {
+    color: #1A0DAB; /* Color change on hover */
+    text-decoration: underline; /* Underline remains on hover */
+}
+
 footer {
     text-align: center;
     padding: 10px;
