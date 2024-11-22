@@ -103,7 +103,7 @@
                 // Trigger the animation after a short delay
                 setTimeout(() => {
                     animateCar(startPosition, endPosition, 5000, 5, 40); // 2000ms = 2 seconds, scale from 5% to 20%
-                }, 500); // Start animation after 0.5 seconds
+                }, 1000); // Start animation after 0.5 seconds
             }
             startAnimation();
 

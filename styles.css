@@ -68,3 +68,10 @@ footer {
     color: #333;
     /* border-style:dashed; */
 }
+
+/* Adjust padding for smaller devices */
+@media (max-width: 600px) {
+    footer {
+        padding-bottom: 60px; /* Increase bottom padding */
+    }
+}
