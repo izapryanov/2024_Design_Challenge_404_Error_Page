@@ -131,10 +131,10 @@
         document.getElementById('mute-unmute-btn').addEventListener('click',  () => {
             if (audio.muted) {
                 audio.muted = false; // Unmute the audio
-                muteUnmuteButton.textContent = 'Mute 🔇'; // Change button text
+                muteUnmuteButton.textContent = 'Mute'; // Change button text
             } else {
                 audio.muted = true; // Mute the audio
-                muteUnmuteButton.textContent = 'Unmute 🔈'; // Change button text
+                muteUnmuteButton.textContent = 'Unmute'; // Change button text
             }
         });
         
