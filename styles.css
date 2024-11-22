@@ -72,7 +72,7 @@ footer {
 /* Adjust padding for smaller devices */
 @media (max-width: 600px) {
     footer {
-        margin-bottom: 100px; /* Increase bottom padding */
+        margin-bottom: 200px; /* Increase bottom padding */
     }
 }
 
