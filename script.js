@@ -108,3 +108,8 @@
             // Recalculate positions on window resize
             window.addEventListener('resize', onResize);
         });
+        //Change car image on hover
+        function swapImage(isHover) {
+            const img = document.getElementById('car');
+            img.src = (isHover ? 'resources/car_watercolor_border_hover.png' : 'resources/car_watercolor_border.png');
+        }
