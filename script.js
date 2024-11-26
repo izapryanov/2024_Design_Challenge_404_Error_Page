@@ -52,7 +52,6 @@
 
     // Smooth animation function
     function animateCar(start, end, duration, startSize, endSize) {
-        car.src = "resources/car_watercolor_border.png";
         const startTime = performance.now();
 
         function update(currentTime) {
