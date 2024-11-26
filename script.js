@@ -114,6 +114,7 @@
                 }
             }, 100); // Check every 100ms
         });
+        car.src = "resources/car_watercolor_border.png";
         animateCar(startPosition, endPosition, 5000, 5, 40); // 5000 mseconds, scale from 5% to 20%
     }
 
