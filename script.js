@@ -52,6 +52,7 @@
 
     // Smooth animation function
     function animateCar(start, end, duration, startSize, endSize) {
+        car.src = "resources/car_watercolor_border.png";
         const startTime = performance.now();
 
         function update(currentTime) {
@@ -114,7 +115,6 @@
                 }
             }, 100); // Check every 100ms
         });
-        car.src = "resources/car_watercolor_border.png";
         animateCar(startPosition, endPosition, 5000, 5, 40); // 5000 mseconds, scale from 5% to 20%
     }
 
