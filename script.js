@@ -90,34 +90,6 @@ function swapImage(isHover) {
         : 'resources/car_watercolor_border.png';
 }
 
-//Callback to execute when the car and the background images are loaded
-function carAndBackgroundLoaded(carImage, backgroundImage, callback) {
-    let isCarImageLoaded = false;
-    let isBackgroundImageLoaded = false;
-
-    function imageLoaded() {
-        if (isCarImageLoaded && isBackgroundImageLoaded) {
-            callback(); // Once both images are loaded, execute the callback
-        }
-    }    
-
-    // Check if images are already loaded (in case they are cached)
-    if (carImage.complete && backgroundImage.complete) {
-        isCarImageLoaded = true;
-        isBackgroundImageLoaded = true;
-        imageLoaded();
-    } else {
-        // Add event listeners for both images
-        carImage.addEventListener('load',  () => {
-            isCarImageLoaded = true;
-            imageLoaded();
-        });
-        backgroundImage.addEventListener('load',  () => {
-            isBackgroundImageLoaded = true;
-            imageLoaded();
-        });
-    }
-}
 
 document.addEventListener("DOMContentLoaded", () => {
     const car = document.getElementById('car');
@@ -131,6 +103,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
     car.style.left = `${startPosition.left}px`;
     car.style.top = `${startPosition.top}px`;
+
+    //Callback to execute when the car and the background images are loaded
+    function carAndBackgroundLoaded(carImage, backgroundImage, callback) {
+        let isCarImageLoaded = false;
+        let isBackgroundImageLoaded = false;
+
+        function imageLoaded() {
+            if (isCarImageLoaded && isBackgroundImageLoaded) {
+                callback(); // Once both images are loaded, execute the callback
+            }
+        }    
+
+        // Check if images are already loaded (in case they are cached)
+        if (carImage.complete && backgroundImage.complete) {
+            isCarImageLoaded = true;
+            isBackgroundImageLoaded = true;
+            imageLoaded();
+        } else {
+            // Add event listeners for both images
+            carImage.addEventListener('load',  () => {
+                isCarImageLoaded = true;
+                imageLoaded();
+            });
+            backgroundImage.addEventListener('load',  () => {
+                isBackgroundImageLoaded = true;
+                imageLoaded();
+            });
+        }
+    }
 
     function startAnimation() {
         animateCar(car,background,startPosition,endPosition,5000,5,40,
