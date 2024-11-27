@@ -1,6 +1,7 @@
 // Logical positions of the points
-const blackDotPosition = { x: 0.42, y: 0.71 }; // Start position
+const greenDotPosition = { x: 0.42, y: 0.71 }; // Start position
 const blueDotPosition = { x: 0.49, y: 0.68 };  // End position
+let isFirstCheckForLoadedImages = true;
 
 // Function to calculate and set car position
 function calculateCarPosition(dotPosition, background) {
@@ -84,7 +85,8 @@ function onResize(car, background, currentTargetPosition) {
 
 // Change car image on hover
 function swapImage(isHover) {
-    const img = document.getElementById('car');
+    let img = document.getElementById('car');
+    isFirstCheckForLoadedImages = false;
     img.src = isHover
         ? 'resources/car_watercolor_border_hover.png'
         : 'resources/car_watercolor_border.png';
@@ -92,13 +94,13 @@ function swapImage(isHover) {
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    const car = document.getElementById('car');
-    const background = document.getElementById('background');
+    let car = document.getElementById('car');
+    let background = document.getElementById('background');
 
-    let currentTargetPosition = blackDotPosition; // Tracks the car's current logical position
+    let currentTargetPosition = greenDotPosition; // Tracks the car's current logical position
 
-    // Set initial position at black dot
-    const startPosition = calculateCarPosition(blackDotPosition, background);
+    // Set initial position at green dot
+    const startPosition = calculateCarPosition(greenDotPosition, background);
     const endPosition = calculateCarPosition(blueDotPosition, background);
 
     car.style.left = `${startPosition.left}px`;
@@ -106,30 +108,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
     //Callback to execute when the car and the background images are loaded
     function carAndBackgroundLoaded(carImage, backgroundImage, callback) {
-        let isCarImageLoaded = false;
-        let isBackgroundImageLoaded = false;
 
-        function imageLoaded() {
-            if (isCarImageLoaded && isBackgroundImageLoaded) {
-                callback(); // Once both images are loaded, execute the callback
+        // Load the first image
+        backgroundImage.addEventListener('load', () => {
+            console.log("Background image loaded.");
+
+            // Load the second image only after the first has completed
+            carImage.addEventListener('load', () => {
+                console.log("Car image loaded.");
+                if(isFirstCheckForLoadedImages){ //Prevent constant reloadind of the animation on mouse move
+                    callback(); // Both images are loaded, execute the callback
+                }
+            });
+
+            // Trigger loading of the second image
+            if (carImage.complete) {
+                // Handle cached images
+                const event = new Event('load');
+                carImage.dispatchEvent(event);
             }
-        }    
+        });
 
-        // Check if images are already loaded (in case they are cached)
-        if (carImage.complete && backgroundImage.complete) {
-            isCarImageLoaded = true;
-            isBackgroundImageLoaded = true;
-            imageLoaded();
-        } else {
-            // Add event listeners for both images
-            carImage.addEventListener('load',  () => {
-                isCarImageLoaded = true;
-                imageLoaded();
-            });
-            backgroundImage.addEventListener('load',  () => {
-                isBackgroundImageLoaded = true;
-                imageLoaded();
-            });
+        // Trigger loading of the first image
+        if (backgroundImage.complete) {
+            // Handle cached images
+            const event = new Event('load');
+            backgroundImage.dispatchEvent(event);
         }
     }
 
