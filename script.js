@@ -77,8 +77,9 @@ function animateCar(car, background, start, end, duration, startSize, endSize, c
 }
 
 // Function to handle resizing
-function onResize(car, background, currentTargetPosition) {
+function onResize(background, currentTargetPosition) {
     const updatedPosition = calculateCarPosition(currentTargetPosition, background);
+    let car = document.getElementById('car');
     car.style.left = `${updatedPosition.left}px`;
     car.style.top = `${updatedPosition.top}px`;
 }
@@ -146,7 +147,6 @@ document.addEventListener("DOMContentLoaded", () => {
         backgroundImage.addEventListener('load', () => {
             console.log("Background image loaded.");
             let carImage = addCarImage(carLeft,carTop);
-            
             // Load the second image only after the first has completed
             carImage.addEventListener('load', () => {
                 console.log("Car image loaded.");
@@ -172,9 +172,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function startAnimation() {
+        let car = document.getElementById('car');
         animateCar(car,background,startPosition,endPosition,5000,5,40,
             currentTargetPosition,
             (newPosition) => {
+                let car = document.getElementById('car');
                 currentTargetPosition = newPosition;
                 const finalPosition = calculateCarPosition(currentTargetPosition, background);
                 car.style.left = `${finalPosition.left}px`;
@@ -194,7 +196,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Recalculate positions on window resize
-    window.addEventListener('resize', () => onResize(car, background, currentTargetPosition));
+    window.addEventListener('resize', () => onResize(background, currentTargetPosition));
 
     // Get the audio element and the button
     const audio = document.getElementById('background-audio');
