@@ -128,55 +128,51 @@ function addCarImage(left, top){
 
 document.addEventListener("DOMContentLoaded", () => {
     let background = document.getElementById('background');
-
     let currentTargetPosition = greenDotPosition; // Tracks the car's current logical position
 
-    // Set initial position at green dot
-    const startPosition = calculateCarPosition(greenDotPosition, background);
-    const endPosition = calculateCarPosition(blueDotPosition, background);
-
-    let carLeft = `${startPosition.left}px`;
-    let carTop = `${startPosition.top}px`;
-
-
-
-    //Callback to execute when the car and the background images are loaded
-    function carAndBackgroundLoaded(backgroundImage, callback) {
-
-        // Load the first image
-        backgroundImage.addEventListener('load', () => {
+    // Callback to execute when both car and background images are loaded
+    function carAndBackgroundLoaded(callback) {
+        // Wait for the background image to load
+        background.addEventListener('load', () => {
             console.log("Background image loaded.");
-            let carImage = addCarImage(carLeft,carTop);
-            // Load the second image only after the first has completed
+            
+            // Ensure the dimensions of the background are accurate
+            const startPosition = calculateCarPosition(greenDotPosition, background);
+            const carLeft = `${startPosition.left}px`;
+            const carTop = `${startPosition.top}px`;
+
+            let carImage = addCarImage(carLeft, carTop);
+
+            // Wait for the car image to load
             carImage.addEventListener('load', () => {
                 console.log("Car image loaded.");
-                if(isFirstCheckForLoadedImages){ //Prevent constant reloadind of the animation on mouse move
-                    callback(); // Both images are loaded, execute the callback
+                if (isFirstCheckForLoadedImages) { // Prevent constant re-triggering
+                    callback(); // Trigger the animation or further actions
                 }
             });
 
-            // Trigger loading of the second image
+            // Handle cached car image
             if (carImage.complete) {
-                // Handle cached images
                 const event = new Event('load');
                 carImage.dispatchEvent(event);
             }
         });
 
-        // Trigger loading of the first image
-        if (backgroundImage.complete) {
-            // Handle cached images
+        // Handle cached background image
+        if (background.complete) {
             const event = new Event('load');
-            backgroundImage.dispatchEvent(event);
+            background.dispatchEvent(event);
         }
     }
 
     function startAnimation() {
+        const startPosition = calculateCarPosition(greenDotPosition, background);
+        const endPosition = calculateCarPosition(blueDotPosition, background);
+
         let car = document.getElementById('car');
-        animateCar(car,background,startPosition,endPosition,5000,5,40,
+        animateCar(car, background, startPosition, endPosition, 5000, 5, 40,
             currentTargetPosition,
             (newPosition) => {
-                let car = document.getElementById('car');
                 currentTargetPosition = newPosition;
                 const finalPosition = calculateCarPosition(currentTargetPosition, background);
                 car.style.left = `${finalPosition.left}px`;
@@ -185,9 +181,10 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         );
     }
-    carAndBackgroundLoaded(background, startAnimation);
 
-    // Trigger the animation when the button is clicked
+    carAndBackgroundLoaded(startAnimation);
+
+    // Button to replay the animation
     document.getElementById('replay-btn').addEventListener('click', () => {
         const audio = document.getElementById('background-audio');
         audio.currentTime = 0;
@@ -198,7 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Recalculate positions on window resize
     window.addEventListener('resize', () => onResize(background, currentTargetPosition));
 
-    // Get the audio element and the button
+    // Mute/Unmute button
     const audio = document.getElementById('background-audio');
     const muteUnmuteButton = document.getElementById('mute-unmute-btn');
 
