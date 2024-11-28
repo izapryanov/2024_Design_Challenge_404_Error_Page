@@ -92,9 +92,40 @@ function swapImage(isHover) {
         : 'resources/car_watercolor_border.png';
 }
 
+//Load and add car image to the scene
+function addCarImage(left, top){
+     // Create the anchor element
+     const anchor = document.createElement('a');
+     anchor.href = "https://en.wikipedia.org/wiki/Peugeot_404"; // Set the link
+     anchor.target = "_blank"; // Open in a new tab
+
+    // Create the image element
+    let carImage = document.createElement('img');
+
+    // Set the attributes
+    carImage.src = "resources/car_watercolor_border.png";
+    carImage.className = "car";
+    carImage.id = "car";
+    carImage.alt = "Car";
+    carImage.style.left = left;
+    carImage.style.top = top;
+
+    // Attach event listeners for hover
+    carImage.addEventListener('mouseover', () => swapImage(true));
+    carImage.addEventListener('mouseout', () => swapImage(false));
+
+    // Append the image to the anchor
+    anchor.appendChild(carImage);
+
+    // Append the image to a desired container
+    const container = document.getElementById('container');
+    container.appendChild(anchor);
+
+    return carImage;
+}
+
 
 document.addEventListener("DOMContentLoaded", () => {
-    let car = document.getElementById('car');
     let background = document.getElementById('background');
 
     let currentTargetPosition = greenDotPosition; // Tracks the car's current logical position
@@ -103,16 +134,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const startPosition = calculateCarPosition(greenDotPosition, background);
     const endPosition = calculateCarPosition(blueDotPosition, background);
 
-    car.style.left = `${startPosition.left}px`;
-    car.style.top = `${startPosition.top}px`;
+    let carLeft = `${startPosition.left}px`;
+    let carTop = `${startPosition.top}px`;
+
+
 
     //Callback to execute when the car and the background images are loaded
-    function carAndBackgroundLoaded(carImage, backgroundImage, callback) {
+    function carAndBackgroundLoaded(backgroundImage, callback) {
 
         // Load the first image
         backgroundImage.addEventListener('load', () => {
             console.log("Background image loaded.");
-
+            let carImage = addCarImage(carLeft,carTop);
+            
             // Load the second image only after the first has completed
             carImage.addEventListener('load', () => {
                 console.log("Car image loaded.");
@@ -149,7 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         );
     }
-    carAndBackgroundLoaded(car, background, startAnimation);
+    carAndBackgroundLoaded(background, startAnimation);
 
     // Trigger the animation when the button is clicked
     document.getElementById('replay-btn').addEventListener('click', () => {
